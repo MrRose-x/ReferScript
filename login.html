@@ -2,41 +2,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - Refer Script</title>
+  <title>Refer Script • Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root { --primary:#0d9488; --bg:#f8fafc; --card:#fff; --text:#0f172a; }
-    *{box-sizing:border-box;font-family:'Inter',sans-serif;}
-    body{margin:0;display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--bg);}  
-    .card{width:100%;max-width:380px;padding:2rem;border-radius:1rem;background:var(--card);box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);}  
-    h1{margin:0 0 1.25rem;text-align:center;color:var(--text);}  
-    label{display:block;margin:.5rem 0 .25rem;font-size:.875rem;color:var(--text);}  
-    input{width:100%;padding:.75rem;border:1px solid #e2e8f0;border-radius:.5rem;font-size:1rem;}  
-    button{width:100%;padding:.75rem;margin-top:1.25rem;border:none;border-radius:.5rem;font-size:1rem;font-weight:600;color:#fff;background:var(--primary);cursor:pointer;transition:background .2s;}  
-    button:hover{background:#0f766e;}  
+    /* Re‑use root + body styles */
+    :root{--primary:#14b8a6;--primary-dark:#0f766e;--glass-bg:rgba(255,255,255,0.25);--card-radius:1.25rem;}*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}body{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#38bdf8 0%,#0ea5e9 100%);}  
+    .card{width:92%;max-width:380px;padding:2rem 1.5rem;border-radius:var(--card-radius);backdrop-filter:blur(18px);background:var(--glass-bg);border:1px solid rgba(255,255,255,0.35);box-shadow:0 25px 40px -15px rgba(0,0,0,0.3);}  
+    h1{font-size:1.55rem;font-weight:800;color:#fff;text-align:center;margin-bottom:1.5rem;text-shadow:0 1px 3px rgba(0,0,0,.25);}  
+    label{display:block;color:#fff;font-size:.9rem;margin:.6rem 0 .25rem;}  
+    input{width:100%;padding:.75rem;border-radius:.7rem;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.2);color:#fff;font-size:1rem;}input::placeholder{color:#f1f5f9;}  
+    .btn{width:100%;padding:.85rem 1rem;margin-top:1.3rem;border:none;border-radius:.9rem;font-weight:600;font-size:1rem;color:#fff;background:var(--primary);cursor:pointer;transition:transform .2s,box-shadow .2s;}  
+    .btn:hover{transform:translateY(-3px);box-shadow:0 12px 20px -6px rgba(0,0,0,.35);}  
   </style>
 </head>
 <body>
   <div class="card">
-    <h1 id="site-heading">Login</h1>
-    <label>Mobile Number</label>
-    <input id="number" type="tel" placeholder="Mobile number" minlength="10" maxlength="15" required />
-    <label>Password</label>
-    <input id="password" type="password" placeholder="Password" required />
-    <button id="btn">Continue</button>
+    <h1 id="heading">Login</h1>
+    <label>📱 Mobile Number</label>
+    <input id="number" type="tel" placeholder="e.g. 9876543210" maxlength="15" />
+    <label>🔑 Password</label>
+    <input id="password" type="password" placeholder="Password" />
+    <button class="btn" id="continue">Continue ➜</button>
   </div>  <script>
-    // grab siteName chosen earlier
-    const siteName = sessionStorage.getItem('site') || 'N/A';
-    document.getElementById('site-heading').textContent = `${siteName.toUpperCase()} Login`;
-
-    document.getElementById('btn').addEventListener('click', ()=>{
-      const num  = document.getElementById('number').value.trim();
-      const pass = document.getElementById('password').value;
-      if(!num || !pass){ alert('Both fields required'); return; }
-
-      // stash for next page
-      sessionStorage.setItem('number', num);
-      sessionStorage.setItem('password', pass);
-      window.location.href = 'refer.html';
-    });
+    const site=sessionStorage.getItem('site')||'Site';
+    document.getElementById('heading').textContent=`${site.toUpperCase()} Login`;
+    document.getElementById('continue').onclick=()=>{
+      const num=document.getElementById('number').value.trim();
+      const pass=document.getElementById('password').value;
+      if(!num||!pass){alert('Enter both fields');return;}
+      sessionStorage.setItem('number',num);
+      sessionStorage.setItem('password',pass);
+      location.href='refer.html';
+    };
   </script></body>
 </html><!-- 
